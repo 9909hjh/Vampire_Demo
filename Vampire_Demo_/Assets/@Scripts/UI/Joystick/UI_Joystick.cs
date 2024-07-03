@@ -14,9 +14,12 @@ public class UI_Joystick : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     Vector2 _touchPosition;
     Vector2 _moveDir;
 
+    PlayerController _player;
+
     void Start()
     {
         _joystickRadius = _background.gameObject.GetComponent<RectTransform>().sizeDelta.y / 2;
+        _player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -33,7 +36,11 @@ public class UI_Joystick : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        _handler.transform.position = _touchPosition;
+        _moveDir = Vector2.zero;
 
+        //임시 이동
+        Managers.MoveDir = _moveDir;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -45,5 +52,8 @@ public class UI_Joystick : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
         Vector2 newPosition = _touchPosition + _moveDir * moveDist;
         _handler.transform.position = newPosition;
+
+        //임시 이동
+        Managers.MoveDir = _moveDir;
     }
 }
