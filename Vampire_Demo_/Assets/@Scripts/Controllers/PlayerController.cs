@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector2 _moveDir = Vector2.zero;
-    float _speed = 5.0f;
+    float _speed = 2.0f;
 
     public Vector2 MoveDir
     {

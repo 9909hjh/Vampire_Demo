@@ -29,11 +29,11 @@ public class GameScene : MonoBehaviour
 
         var snake = Managers.Resource.Instantiate("Snake_01.prefab");
         var hoblin = Managers.Resource.Instantiate("Goblin_01.prefab");
-        //var joystick = Managers.Resource.Instantiate("Snake_01.prefab");
-        //joystick.name = "@UI_Joystick";
+        var joystick = Managers.Resource.Instantiate("UI_Joystick.prefab");
+        joystick.name = "@UI_Joystick";
 
-        //var map = Managers.Resource.Instantiate("Map.prefab");
-        //map.name = "@Map";
+        var map = Managers.Resource.Instantiate("Map.prefab");
+        map.name = "@Map";
 
         Camera.main.GetComponent<CameraController>().Target = player;
     }
