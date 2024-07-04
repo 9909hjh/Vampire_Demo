@@ -24,19 +24,18 @@ public class GameScene : MonoBehaviour
 
     void StartLoaded()
     {
-        GameObject prefab = Managers.Resource.Load<GameObject>("Player.prefab");
+        var player = Managers.Resource.Instantiate("Player.prefab");
+        player.AddComponent<PlayerController>();
 
-        //Managers.Resource.LoadAsync<GameObject>("Snake_01", (go) =>
-        //{
-        //    // Todo
-        //});
+        var snake = Managers.Resource.Instantiate("Snake_01.prefab");
+        var hoblin = Managers.Resource.Instantiate("Goblin_01.prefab");
+        //var joystick = Managers.Resource.Instantiate("Snake_01.prefab");
+        //joystick.name = "@UI_Joystick";
 
-        GameObject go = new GameObject() { name = "@Monsters" };
-        _snake.transform.parent = go.transform;
-        _goblin.transform.parent = go.transform;
+        //var map = Managers.Resource.Instantiate("Map.prefab");
+        //map.name = "@Map";
 
-        //prefab.AddComponent<PlayerController>();
-        //Camera.main.GetComponent<CameraController>()
+        Camera.main.GetComponent<CameraController>().Target = player;
     }
 
     void Update()

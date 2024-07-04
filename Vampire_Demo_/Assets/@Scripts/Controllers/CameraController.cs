@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    
+    public GameObject Target;
 
     void Start()
     {
@@ -13,6 +13,9 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        
+        if (Target == null)
+            return;
+
+        transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y, -10);
     }
 }
