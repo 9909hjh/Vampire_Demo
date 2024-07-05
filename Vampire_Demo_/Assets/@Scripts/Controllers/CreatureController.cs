@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CreatureController : BaseController
 {
-    protected float _speed = 2.0f;
+    protected float _speed = 5.0f;
 
     public int Hp { get; set; } = 100;
     public int MaxHp { get; set; } = 100;

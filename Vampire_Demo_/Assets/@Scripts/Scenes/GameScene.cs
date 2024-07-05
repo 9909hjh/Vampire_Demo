@@ -38,8 +38,11 @@ public class GameScene : MonoBehaviour
         Camera.main.GetComponent<CameraController>().Target = player;
     }
 
+    SpawningPool _spawningPool;
     void StartLoaded2() // 개선한 함수
     {
+        _spawningPool = gameObject.AddComponent<SpawningPool>();
+
         var player = Managers.Object.Spawn<PlayerController>();
 
         for(int i = 0; i < 10; i++)
