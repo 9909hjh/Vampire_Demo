@@ -17,7 +17,13 @@ public class GameScene : MonoBehaviour
 
             if(count == totalCount)
             {
-                StartLoaded2();
+                Managers.Resource.LoadAllAsync<TextAsset>("Data", (key2, count2, totalCount2) =>
+                {
+                    if(count2 == totalCount2)
+                    {
+                        StartLoaded2();
+                    }
+                });
             }
         });
     }
@@ -58,6 +64,13 @@ public class GameScene : MonoBehaviour
         map.name = "@Map";
 
         Camera.main.GetComponent<CameraController>().Target = player.gameObject;
+
+        // Data Test
+        Managers.Data.Init();
+        foreach(var playerData in Managers.Data.PlayerDic.Values)
+        {
+            Debug.Log($"LV: {playerData.level}, HP: {playerData.maxHp}");
+        }
     }
 
     void Update()
