@@ -22,7 +22,7 @@ public class MonsterController : CreatureController
             return;
 
         Vector3 dir = pc.transform.position - transform.position;
-        Vector3 newPos = transform.position + dir.normalized * Time.deltaTime * _speed;
+        Vector3 newPos = transform.position + dir.normalized * Time.deltaTime * (_speed / 2);
         GetComponent<Rigidbody2D>().MovePosition(newPos);
 
         GetComponent<SpriteRenderer>().flipX = dir.x > 0;
