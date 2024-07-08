@@ -21,25 +21,31 @@ MonoBehaviour:
     m_Address: Snake_01.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a8c35b95911978b499c501839593e64e
     m_Address: Player.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: efbb63858c8b7014da450843dd620fe4
     m_Address: Goblin_01.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: de04057a0876c3b4b8e6c63b1f1e687a
     m_Address: Map.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10586cb09607984499eecf5cc38cb381
+    m_Address: Expgem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3c2a8e213bcf0994a9250528c594fff1, type: 2}

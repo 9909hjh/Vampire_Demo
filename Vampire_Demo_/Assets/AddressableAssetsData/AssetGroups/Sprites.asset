@@ -10,15 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: UI Prefabs
+  m_Name: Sprites
   m_EditorClassIdentifier: 
-  m_GroupName: UI Prefabs
+  m_GroupName: Sprites
   m_Data:
     m_SerializedData: []
-  m_GUID: 92d2226a7347cb94c850ddea1450359c
+  m_GUID: 4491ba95bef2f1b4397dc6c7fab3863b
   m_SerializeEntries:
-  - m_GUID: 771b928092420fc43ad08bd0f92063cb
-    m_Address: UI_Joystick.prefab
+  - m_GUID: a858c22b0a4d3f54fbc1d0442b7a9312
+    m_Address: Expgem_2.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75e8585518097c24ab7146c0a641e5ca
+    m_Address: Expgem_1.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cad2b17c88b848c4d9ded10e70dce0b7
+    m_Address: Expgem_0.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
@@ -27,5 +39,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 3c2a8e213bcf0994a9250528c594fff1, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: e92c5dad620c6c445938a53fbb31efd4, type: 2}
-    - {fileID: 11400000, guid: ae43848e0313dab4c9a4abc978d3e8da, type: 2}
+    - {fileID: 11400000, guid: a4988d94934b61e40aa10e807355f428, type: 2}
+    - {fileID: 11400000, guid: d2fb2a02ae986da4e98b4c6f8202ee9f, type: 2}

@@ -54,13 +54,19 @@ public class ResourceManager
     // 비동기 방식
     public void LoadAsync<T>(string key, Action<T> callback = null) where T : UnityEngine.Object
     {
+        // 캐시 확인
         if (_resources.TryGetValue(key, out Object resource))
         {
             callback?.Invoke(resource as T);
             return;
         }
 
-        var asyncOperation = Addressables.LoadAssetAsync<T>(key);
+        // 텍스쳐로 갖고 오는걸 스프라이트로 변환
+        string loadkey = key;
+        if (key.Contains(".sprite"))
+            loadkey = $"{key}[{key.Replace(".sprite", "")}]";
+
+        var asyncOperation = Addressables.LoadAssetAsync<T>(loadkey);
         asyncOperation.Completed += (op) =>
         {
             _resources.Add(key, op.Result);

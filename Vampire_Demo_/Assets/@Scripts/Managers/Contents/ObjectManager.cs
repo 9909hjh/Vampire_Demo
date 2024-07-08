@@ -8,8 +8,9 @@ public class ObjectManager
     public PlayerController Player { get; private set; }
     public HashSet<MonsterController> Monsters { get; } = new HashSet<MonsterController>();
     public HashSet<ProjectileController> Projectiles { get; } = new HashSet<ProjectileController>();
+    public HashSet<GemController> Gems { get; } = new HashSet<GemController>();
 
-    public T Spawn<T>(int templateID = 0) where T : BaseController // 만약 키 값을 숫자가 아니고 이름으로 하고 싶으면 string으로 변경
+    public T Spawn<T>(Vector3 position, int templateID = 0) where T : BaseController // 만약 키 값을 숫자가 아니고 이름으로 하고 싶으면 string으로 변경
     {
         System.Type type = typeof(T);
 
@@ -18,6 +19,7 @@ public class ObjectManager
             // Todo : Data
             GameObject go = Managers.Resource.Instantiate("Player.prefab", pooling: true);
             go.name = "Player";
+            go.transform.position = position;
 
             PlayerController pc = go.GetOrAddComponent<PlayerController>();
             Player = pc;
@@ -29,11 +31,22 @@ public class ObjectManager
             // 임시 코드
             string name = (templateID == 0 ? "Goblin_01" : "Snake_01");
             GameObject go = Managers.Resource.Instantiate(name + ".prefab", pooling: true);
+            go.transform.position = position;
 
             MonsterController mc = go.GetOrAddComponent<MonsterController>();
             Monsters.Add(mc);
 
             return mc as T;
+        }
+        else if (type == typeof(GemController)) 
+        {
+            GameObject go = Managers.Resource.Instantiate(Define.EXP_GEM_PREFAB, pooling: true);
+            go.transform.position = position;
+
+            GemController gc = go.GetOrAddComponent<GemController>();
+            Gems.Add(gc);
+
+            return gc as T;
         }
 
         return null;
@@ -56,6 +69,13 @@ public class ObjectManager
         {
             Projectiles.Remove(obj as ProjectileController);
             Managers.Resource.Destroy(obj.gameObject);
+        }
+        else if(type == typeof(GemController))
+        {
+            Gems.Remove(obj as GemController);
+            Managers.Resource.Destroy(obj.gameObject);
+
+
         }
     }
 }
