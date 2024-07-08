@@ -15,6 +15,15 @@ public class ResourceManager
         if (_resources.TryGetValue(key, out Object resource))
             return resource as T;
 
+        if (typeof(T) == typeof(Sprite))
+        {
+            key = key + ".sprite";
+            if (_resources.TryGetValue(key, out Object temp))
+            {
+                return temp as T;
+            }
+        }
+
         return null;
     }
 
@@ -64,11 +73,22 @@ public class ResourceManager
         // 텍스쳐로 갖고 오는걸 스프라이트로 변환
         string loadkey = key;
         if (key.Contains(".sprite"))
-            loadkey = $"{key}[{key.Replace(".sprite", "")}]";
+            loadkey = $"{key}[{key.Replace(".sprite", "")}]"; //$"{key}[{key.Replace(".sprite", "")}]"
 
         var asyncOperation = Addressables.LoadAssetAsync<T>(loadkey);
         asyncOperation.Completed += (op) =>
         {
+            if(op.Result is Texture2D texture)
+            {
+                // Texture2D를 Sprite로 변환.
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                // 리소스에 스프라이트를 추가하고 콜백을 호출.
+                _resources.Add(key, sprite);
+                callback?.Invoke(sprite as T);
+                return;
+            }
+
             _resources.Add(key, op.Result);
             callback?.Invoke(op.Result);
         };

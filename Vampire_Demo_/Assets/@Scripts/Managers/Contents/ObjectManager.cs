@@ -23,6 +23,7 @@ public class ObjectManager
 
             PlayerController pc = go.GetOrAddComponent<PlayerController>();
             Player = pc;
+            pc.Init();
 
             return pc as T;
         }
@@ -35,6 +36,7 @@ public class ObjectManager
 
             MonsterController mc = go.GetOrAddComponent<MonsterController>();
             Monsters.Add(mc);
+            mc.Init();
 
             return mc as T;
         }
@@ -45,6 +47,11 @@ public class ObjectManager
 
             GemController gc = go.GetOrAddComponent<GemController>();
             Gems.Add(gc);
+            gc.Init();
+
+            string key = Random.Range(0, 2) == 0 ? "Expgem_0.sprite" : "Expgem_1.sprite";
+            Sprite sprite = Managers.Resource.Load<Sprite>(key);
+            go.GetComponent<SpriteRenderer>().sprite = sprite;
 
             return gc as T;
         }
