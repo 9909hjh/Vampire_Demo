@@ -66,4 +66,32 @@ namespace Data
     }
 
     #endregion
+
+    #region SkillData
+    public class SkillData
+    {
+        public int templateID;
+        public Define.SkillType skillType = Define.SkillType.None;
+        public int prefab;
+        public int damage;
+    }
+
+    [Serializable] // <= 이것의 이미는 메모리에 들고 있는 것을 파일로 변환할 수 있게 해준다.
+    public class SkillDataLoader : ILoader<int, SkillData>
+    {
+        public List<SkillData> skills = new List<SkillData>();
+
+        public Dictionary<int, SkillData> MakeDict()
+        {
+            Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();
+            foreach (SkillData skill in skills)
+            {
+                dict.Add(skill.templateID, skill);
+            }
+            return dict;
+        }
+    }
+
+
+    #endregion
 }
