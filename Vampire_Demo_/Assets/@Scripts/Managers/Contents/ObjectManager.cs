@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ObjectManager
 {
@@ -14,7 +15,7 @@ public class ObjectManager
     {
         System.Type type = typeof(T);
 
-        if(type == typeof(PlayerController))
+        if (type == typeof(PlayerController))
         {
             // Todo : Data
             GameObject go = Managers.Resource.Instantiate("Player.prefab", pooling: true);
@@ -27,7 +28,7 @@ public class ObjectManager
 
             return pc as T;
         }
-        else if(type == typeof(MonsterController))
+        else if (type == typeof(MonsterController))
         {
             // 임시 코드
             string name = (templateID == 0 ? "Goblin_01" : "Snake_01");
@@ -40,7 +41,7 @@ public class ObjectManager
 
             return mc as T;
         }
-        else if (type == typeof(GemController)) 
+        else if (type == typeof(GemController))
         {
             GameObject go = Managers.Resource.Instantiate(Define.EXP_GEM_PREFAB, pooling: true);
             go.transform.position = position;
@@ -57,6 +58,17 @@ public class ObjectManager
             GameObject.Find("@Grid").GetComponent<GridController>().Add(go);
 
             return gc as T;
+        }
+        else if(typeof(T).IsSubclassOf(typeof(ProjectileController)))
+        {
+            GameObject go = Managers.Resource.Instantiate("FireProjectile.prefab", pooling : true);
+            go.transform.position = position;
+
+            ProjectileController pc = go.GetOrAddCompoenet<ProjectileController>();
+            Projectiles.Add(pc);
+            pc.Init();
+
+            return pc as T;
         }
 
         return null;
@@ -75,11 +87,6 @@ public class ObjectManager
             Monsters.Remove(obj as MonsterController);
             Managers.Resource.Destroy(obj.gameObject);
         }
-        else  if(type == typeof(ProjectileController))
-        {
-            Projectiles.Remove(obj as ProjectileController);
-            Managers.Resource.Destroy(obj.gameObject);
-        }
         else if(type == typeof(GemController))
         {
             Gems.Remove(obj as GemController);
@@ -87,6 +94,11 @@ public class ObjectManager
 
             // 임시 test
             GameObject.Find("@Grid").GetComponent<GridController>().Remove(obj.gameObject);
+        }
+        else if (typeof(T).IsSubclassOf(typeof(ProjectileController)))
+        {
+            Projectiles.Remove(obj as ProjectileController);
+            Managers.Resource.Destroy(obj.gameObject);
         }
     }
 }
