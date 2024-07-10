@@ -67,19 +67,21 @@ namespace Data
 
     #endregion
 
+
     #region SkillData
+    [Serializable]
     public class SkillData
     {
         public int templateID;
         public Define.SkillType skillType = Define.SkillType.None;
-        public int prefab;
+        public string prefab;
         public int damage;
     }
 
-    [Serializable] // <= 이것의 이미는 메모리에 들고 있는 것을 파일로 변환할 수 있게 해준다.
+    [Serializable]
     public class SkillDataLoader : ILoader<int, SkillData>
     {
-        public List<SkillData> skills = new List<SkillData>();
+        public List<SkillData> skills = new List<SkillData>(); // 하....이 skills라는 변수명이랑 json에 있는 배열의 이름이랑 같아야 찾아진다....
 
         public Dictionary<int, SkillData> MakeDict()
         {
@@ -91,7 +93,6 @@ namespace Data
             return dict;
         }
     }
-
 
     #endregion
 }

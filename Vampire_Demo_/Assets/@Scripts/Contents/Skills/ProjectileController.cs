@@ -20,12 +20,12 @@ public class ProjectileController : SkillController
 
     public void SetInfo(int templateID, CreatureController owner, Vector3 moveDir)
     {
-        if(Managers.Data.SkillDic.TryGetValue(templateID, out Data.SkillData data) == false)
+        if (Managers.Data.SkillDic.TryGetValue(templateID, out Data.SkillData data) == false)
         {
             Debug.LogError("ProjectileController SetInfo Failed");
             return;
         }
-
+        
         _owner = owner;
         _moveDir = moveDir;
         SkillData = data;

@@ -59,12 +59,12 @@ public class ObjectManager
 
             return gc as T;
         }
-        else if(typeof(T).IsSubclassOf(typeof(ProjectileController)))
+        else if(type == typeof(ProjectileController))
         {
             GameObject go = Managers.Resource.Instantiate("FireProjectile.prefab", pooling : true);
             go.transform.position = position;
 
-            ProjectileController pc = go.GetOrAddCompoenet<ProjectileController>();
+            ProjectileController pc = go.GetOrAddComponent<ProjectileController>();
             Projectiles.Add(pc);
             pc.Init();
 
@@ -95,7 +95,7 @@ public class ObjectManager
             // юс╫ц test
             GameObject.Find("@Grid").GetComponent<GridController>().Remove(obj.gameObject);
         }
-        else if (typeof(T).IsSubclassOf(typeof(ProjectileController)))
+        else if (type == typeof(ProjectileController))
         {
             Projectiles.Remove(obj as ProjectileController);
             Managers.Resource.Destroy(obj.gameObject);

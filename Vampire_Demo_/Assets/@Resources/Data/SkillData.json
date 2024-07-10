@@ -1,21 +1,19 @@
 {
-  "SkillDatas": {
-    "SkillData": [
-      {
-        "templateID": 1,
-        "name": "»≠ø∞±∏",
-        "type": "Projectile",
-        "prefab": "FireProjectile.prefab",
-        "damage": 1000,
-        "speed": 2
-      },
-      {
-        "templateID": 10,
-        "name": "∆Ú≈∏",
-        "type": "Melee",
-        "prefab": "EgoSword.prefab",
-        "damage": 1000
-      }
-    ]
-  }
+  "skills": [
+    {
+      "templateID": 1,
+      "name": "»≠ø∞±∏",
+      "skillType": "Projectile",
+      "prefab": "FireProjectile.prefab",
+      "damage": 1000,
+      "speed": 2
+    },
+    {
+      "templateID": 10,
+      "name": "∆Ú≈∏",
+      "skillType": "Melee",
+      "prefab": "EgoSword.prefab",
+      "damage": 1000
+    }
+  ]
 }

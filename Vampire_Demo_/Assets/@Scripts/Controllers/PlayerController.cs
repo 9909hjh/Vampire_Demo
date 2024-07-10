@@ -14,10 +14,17 @@ public class PlayerController : CreatureController
         get { return _moveDir;}
         set { _moveDir = value; }
     }
-    void Start()
+
+    public override bool Init()
     {
+        if(base.Init() == false)
+            return false;
+
         Managers.Game.OnMoveDirChanged += HandleOnMoveDirChanged;
-        
+
+        StartProjectile();
+
+        return true;
     }
 
     private void OnDestroy()
@@ -87,4 +94,31 @@ public class PlayerController : CreatureController
         CreatureController cc = attacker as CreatureController;
         cc?.OnDamaged(this, 10000);
     }
+
+    // 임시 코드
+    #region FireProjectile
+
+    Coroutine _coFireProjectile;
+
+    void StartProjectile()
+    {
+        if(_coFireProjectile !=  null)
+            StopCoroutine(_coFireProjectile);
+
+        _coFireProjectile = StartCoroutine(CoStartProjectile());
+    }
+
+    IEnumerator CoStartProjectile()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.5f);
+
+        while(true)
+        {
+            ProjectileController pc = Managers.Object.Spawn<ProjectileController>(transform.position, 1);
+            pc.SetInfo(1, this, _moveDir);
+            yield return wait;
+        }
+    }
+
+    #endregion
 }

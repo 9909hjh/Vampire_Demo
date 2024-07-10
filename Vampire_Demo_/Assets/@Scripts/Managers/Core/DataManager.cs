@@ -25,6 +25,13 @@ public class DataManager
     Loader LoadJson<Loader, key, Value>(string path) where Loader : ILoader<key, Value>
     {
         TextAsset textAsset = Managers.Resource.Load<TextAsset>($"{path}");
+
+        if (textAsset == null) // textAsset이 안불러오는지 확인...
+        {
+            Debug.LogError($"Failed to load {path}");
+            return default;
+        }
+
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
 }

@@ -28,9 +28,8 @@ public static class Define
     public enum SkillType
     {
         None,
-        Melee,
         Projectile,
-        Etc,
+        Melee,
     }
 
     public const int PLAYER_DATA_ID = 1;

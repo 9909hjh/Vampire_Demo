@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class GameScene : MonoBehaviour
 {
-    GameObject _snake;
-    GameObject _goblin;
-    
-
-
     void Start()
     {
         Managers.Resource.LoadAllAsync<Object>("PreLoad", (key, count, totalCount) =>
@@ -41,6 +36,8 @@ public class GameScene : MonoBehaviour
     SpawningPool _spawningPool;
     void StartLoaded2() // 개선한 함수
     {
+        Managers.Data.Init();
+
         _spawningPool = gameObject.AddComponent<SpawningPool>();
 
         var player = Managers.Object.Spawn<PlayerController>(Vector3.zero);
@@ -59,16 +56,16 @@ public class GameScene : MonoBehaviour
 
         Camera.main.GetComponent<CameraController>().Target = player.gameObject;
 
-        // Data Test
-        Managers.Data.Init();
+        // Data Test : json파일을 가져왔는지 확인용
         foreach(var playerData in Managers.Data.PlayerDic.Values)
         {
             Debug.Log($"LV: {playerData.level}, HP: {playerData.maxHp}");
         }
+        
+        foreach(var skillData in Managers.Data.SkillDic.Values)
+        {
+            Debug.Log($"templateID: {skillData.templateID}, damage: {skillData.damage}");
+        }
     }
 
-    void Update()
-    {
-        
-    }
 }

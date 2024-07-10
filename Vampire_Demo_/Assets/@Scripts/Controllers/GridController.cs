@@ -18,7 +18,7 @@ public class GridController : BaseController
     {
         base.Init();
 
-        _grid = gameObject.GetOrAddCompoenet<UnityEngine.Grid>();
+        _grid = gameObject.GetOrAddComponent<UnityEngine.Grid>();
         
         return true;
     }
