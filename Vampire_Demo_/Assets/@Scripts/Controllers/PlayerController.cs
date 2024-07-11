@@ -28,6 +28,7 @@ public class PlayerController : CreatureController
         Managers.Game.OnMoveDirChanged += HandleOnMoveDirChanged;
 
         StartProjectile();
+        StartEgoSword();
 
         return true;
     }
@@ -135,6 +136,23 @@ public class PlayerController : CreatureController
             yield return wait;
         }
     }
+
+    #endregion
+
+
+    #region EgoSword
+    EgoSwordController _egoSword;
+    void StartEgoSword()
+    {
+        if (_egoSword.IsValid())
+            return;
+
+        _egoSword = Managers.Object.Spawn<EgoSwordController>(_indicator.position, Define.EGO_SWORD_ID);
+        _egoSword.transform.SetParent(_indicator);
+
+        _egoSword.ActivateSkill();
+    }
+
 
     #endregion
 }
