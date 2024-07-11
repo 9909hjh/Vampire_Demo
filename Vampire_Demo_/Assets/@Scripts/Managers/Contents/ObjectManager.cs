@@ -9,6 +9,7 @@ public class ObjectManager
     public PlayerController Player { get; private set; }
     public HashSet<MonsterController> Monsters { get; } = new HashSet<MonsterController>();
     public HashSet<ProjectileController> Projectiles { get; } = new HashSet<ProjectileController>();
+    public HashSet<SkillController> Skills { get; } = new HashSet<SkillController>();
     public HashSet<GemController> Gems { get; } = new HashSet<GemController>();
 
     public T Spawn<T>(Vector3 position, int templateID = 0) where T : BaseController // 만약 키 값을 숫자가 아니고 이름으로 하고 싶으면 string으로 변경
@@ -81,10 +82,11 @@ public class ObjectManager
             GameObject go = Managers.Resource.Instantiate(skillData.prefab, pooling: true);
             go.transform.position = position;
 
-            T t = go.GetOrAddComponent<T>();
-            t.Init();
+            SkillController sc = go.GetOrAddComponent<SkillController>();
+            Skills.Add(sc);
+            sc.Init();
 
-            return t;
+            return sc as T;
         }
 
         return null;
@@ -114,6 +116,11 @@ public class ObjectManager
         else if (type == typeof(ProjectileController))
         {
             Projectiles.Remove(obj as ProjectileController);
+            Managers.Resource.Destroy(obj.gameObject);
+        }
+        else if (type == typeof(SkillController))
+        {
+            Skills.Remove(obj as SkillController);
             Managers.Resource.Destroy(obj.gameObject);
         }
     }
