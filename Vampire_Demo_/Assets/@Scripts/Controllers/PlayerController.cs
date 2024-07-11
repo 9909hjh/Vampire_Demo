@@ -68,22 +68,26 @@ public class PlayerController : CreatureController
 
     void CollectEnv()
     {
-        List<GemController> gems = Managers.Object.Gems.ToList();
-        foreach(GemController gem in gems)
+        float sqrCollectDist = EnvCollectDist * EnvCollectDist;
+
+        //List<GemController> gems = Managers.Object.Gems.ToList();
+
+        var findGems = GameObject.Find("@Grid").GetComponent<GridController>().
+            GatherObjects(transform.position, EnvCollectDist + 0.5f);
+
+        foreach (var go in findGems)
         {
+            GemController gem = go.GetComponent<GemController>();
+
             Vector3 dir = gem.transform.position - transform.position;
-            if(dir.magnitude <= EnvCollectDist)
+            if(dir.sqrMagnitude <= sqrCollectDist)
             {
                 Managers.Game.Gem += 1;
                 Managers.Object.Despawn(gem);
             }
         }
 
-        // юс╫ц
-        var findGems = GameObject.Find("@Grid").GetComponent<GridController>().
-            GatherObjects(transform.position, EnvCollectDist + 0.5f);
-
-        Debug.Log($"SearchGems({findGems.Count}) TotalGams({gems.Count})");
+        //Debug.Log($"SearchGems({findGems.Count}) TotalGams({gems.Count})");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

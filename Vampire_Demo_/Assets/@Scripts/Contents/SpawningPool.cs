@@ -32,7 +32,7 @@ public class SpawningPool : MonoBehaviour
         if (monserCount >= _maxMonserCount)
             return;
 
-        Vector3 randPos = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
+        Vector3 randPos = Utils.GenerateMonsterSpawnPosition(Managers.Game.Player.transform.position, 5, 15);
         MonsterController mc = Managers.Object.Spawn<MonsterController>(randPos, Random.Range(0, 2));
     }
 }
