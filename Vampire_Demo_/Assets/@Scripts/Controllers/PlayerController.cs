@@ -84,6 +84,7 @@ public class PlayerController : CreatureController
             if(dir.sqrMagnitude <= sqrCollectDist)
             {
                 Managers.Game.Gem += 1;
+
                 Managers.Object.Despawn(gem);
             }
         }

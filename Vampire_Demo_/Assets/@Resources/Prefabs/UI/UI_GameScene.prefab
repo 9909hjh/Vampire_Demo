@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.465
+  m_Value: 0.1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1286,6 +1286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cb81766e409b64fbd3c2690d0d6db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killCountText: {fileID: 3146652389793289182}
+  _gemSlider: {fileID: 3146652389620903582}
 --- !u!1 &3146652389741355443
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UI_GameScene : MonoBehaviour
+public class UI_GameScene : UI_Base
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] TextMeshProUGUI _killCountText;
+
+    [SerializeField] Slider _gemSlider;
+
+    public void SetGemCountRatio(float ratio)
     {
-        
+        _gemSlider.value = ratio;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetKillCount(int killCount)
     {
-        
+        _killCountText.text = $"{killCount}";
     }
+
+    // 포괄적으로 관리 하도록
+    //public void SetInfo()
+    //{
+
+    //}
+
+    //public void RefreshUI()
+    //{
+
+    //}
 }

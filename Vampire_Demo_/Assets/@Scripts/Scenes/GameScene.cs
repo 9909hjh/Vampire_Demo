@@ -37,6 +37,7 @@ public class GameScene : MonoBehaviour
     void StartLoaded2() // 개선한 함수
     {
         Managers.Data.Init();
+        Managers.UI.ShowSceneUI<UI_GameScene>();
 
         _spawningPool = gameObject.AddComponent<SpawningPool>();
 
@@ -67,6 +68,34 @@ public class GameScene : MonoBehaviour
         {
             Debug.Log($"templateID: {skillData.templateID}, damage: {skillData.damage}");
         }
+
+        Managers.Game.OnGemCountChanged -= HandleOnGemCountChanged;
+        Managers.Game.OnGemCountChanged += HandleOnGemCountChanged;
     }
 
+    int _collectedGemCount = 0;
+    int _remainingTotalGemCount = 10;
+    public void HandleOnGemCountChanged(int gemCount)
+    {
+        // 스킬 업그레이드 팝업을 띄우고 경험치 통을 늘린다. (기획 의도에 따라 변경)
+        _collectedGemCount++;
+
+        if (_collectedGemCount == _remainingTotalGemCount)
+        {
+            Managers.UI.ShowPop<UI_SkillSelectPopup>();
+            _collectedGemCount = 0;
+            _remainingTotalGemCount *= 2;
+        }
+
+        Managers.UI.GetSceneUI<UI_GameScene>().SetGemCountRatio((float)_collectedGemCount / _remainingTotalGemCount);
+    }
+
+    // 삭제가 되었다면을 가정 -> 메모리 릭 방지
+    private void OnDestroy()
+    {
+        if(Managers.Game != null)
+        {
+            Managers.Game.OnGemCountChanged -= HandleOnGemCountChanged;
+        }
+    }
 }
