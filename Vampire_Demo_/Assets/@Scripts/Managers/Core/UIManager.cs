@@ -29,6 +29,7 @@ public class UIManager
         string key = typeof(T).Name + ".prefab";
         T ui = Managers.Resource.Instantiate(key, pooling: true).GetOrAddComponent<T>();
         _uistack.Push(ui);
+        RefreshTimeScale();
 
         return ui;
     }
@@ -40,5 +41,14 @@ public class UIManager
 
         UI_Base ui = _uistack.Pop();
         Managers.Resource.Destroy(ui.gameObject);
+        RefreshTimeScale();
+    }
+
+    public void RefreshTimeScale()
+    {
+        if (_uistack.Count > 0)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 }

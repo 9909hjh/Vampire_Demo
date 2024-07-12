@@ -71,6 +71,8 @@ public class GameScene : MonoBehaviour
 
         Managers.Game.OnGemCountChanged -= HandleOnGemCountChanged;
         Managers.Game.OnGemCountChanged += HandleOnGemCountChanged;
+        Managers.Game.OnKillCountChanged -= HandleOnKillCountChanged;
+        Managers.Game.OnKillCountChanged += HandleOnKillCountChanged;
     }
 
     int _collectedGemCount = 0;
@@ -90,12 +92,24 @@ public class GameScene : MonoBehaviour
         Managers.UI.GetSceneUI<UI_GameScene>().SetGemCountRatio((float)_collectedGemCount / _remainingTotalGemCount);
     }
 
+    int _collectedkillCount = 0;
+    public void HandleOnKillCountChanged(int killCount)
+    {
+        Managers.UI.GetSceneUI<UI_GameScene>().SetKillCount(killCount);
+
+        if(killCount == 5) // 기획 의도에 따라 다르게 해도 됨.
+        {
+            // Boss
+        }
+    }
+
     // 삭제가 되었다면을 가정 -> 메모리 릭 방지
     private void OnDestroy()
     {
         if(Managers.Game != null)
         {
             Managers.Game.OnGemCountChanged -= HandleOnGemCountChanged;
+            Managers.Game.OnKillCountChanged -= HandleOnKillCountChanged;
         }
     }
 }
