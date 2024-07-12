@@ -5,18 +5,74 @@ using static Define;
 
 public class MonsterController : CreatureController
 {
+    #region StatePattern
+
+    CreatureState _creatureState = CreatureState.Moving;
+    public virtual CreatureState CreatureState
+    {
+        get { return _creatureState; }
+        set 
+        { 
+            _creatureState = value;
+            UpdateAnimation();
+        }
+
+    }
+
+    protected Animator _animator;
+    public virtual void UpdateAnimation()
+    {
+
+    }
+    
+
+    public override void UpdateController()
+    {
+        base.UpdateController();
+
+        switch(CreatureState)
+        {
+            case CreatureState.Idle:
+                UpdateIdle();
+                break;
+            case CreatureState.Skill:
+                UpdateSkill();
+                break;
+            case CreatureState.Moving:
+                UpdateMoving();
+                break;
+            case CreatureState.Dead:
+                UpdateDead();
+                break;
+
+        }
+    }
+
+    protected virtual void UpdateIdle() { }
+    protected virtual void UpdateSkill() { }
+    protected virtual void UpdateMoving() { }
+    protected virtual void UpdateDead() { }
+
+    #endregion
+
     public override bool Init()
     {
        if(base.Init())
             return false;
 
+        _animator = GetComponent<Animator>();
         _objectType = ObjectType.Monster;
+
+        CreatureState = CreatureState.Moving;
 
        return true;
     }
 
     void FixedUpdate()
     {
+        if (CreatureState != Define.CreatureState.Moving)
+            return;
+
         PlayerController pc = Managers.Object.Player;
         if(pc == null) 
             return;
@@ -66,7 +122,7 @@ public class MonsterController : CreatureController
         while(true)
         {
             target.OnDamaged(this, 2);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f); // 급사는 하지 않도록...
         }
     }
 

@@ -108,9 +108,9 @@ public class PlayerController : CreatureController
 
         Debug.Log("OnDamaged : " + Hp);
 
-        // 임시코드 확인용
-        CreatureController cc = attacker as CreatureController;
-        cc?.OnDamaged(this, 10000);
+        // 임시코드 확인용 : 몸에 닿으면 큰 데미지
+        //CreatureController cc = attacker as CreatureController;
+        //cc?.OnDamaged(this, 10000);
     }
 
     // 임시 코드

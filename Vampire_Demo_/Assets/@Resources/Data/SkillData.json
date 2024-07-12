@@ -5,7 +5,7 @@
       "name": "È­¿°±¸",
       "skillType": "Projectile",
       "prefab": "FireProjectile.prefab",
-      "damage": 1000,
+      "damage": 5,
       "speed": 2
     },
     {
