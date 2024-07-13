@@ -28,8 +28,8 @@ public static class Define
     public enum SkillType
     {
         None,
-        Projectile,
-        Melee,
+        Sequence,
+        Repeat,
     }
 
     public enum StageType
@@ -54,4 +54,5 @@ public static class Define
     public const string EXP_GEM_PREFAB = "Expgem.prefab";
 
     public const int EGO_SWORD_ID = 10;
+    public const int FIRE_BALL_ID = 1;
 }

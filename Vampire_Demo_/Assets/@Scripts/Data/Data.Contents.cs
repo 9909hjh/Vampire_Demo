@@ -73,7 +73,7 @@ namespace Data
     public class SkillData
     {
         public int templateID;
-        public Define.SkillType skillType = Define.SkillType.None;
+        //public Define.SkillType skillType = Define.SkillType.None;
         public string prefab;
         public int damage;
     }

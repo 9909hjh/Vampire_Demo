@@ -10,7 +10,7 @@ public class ObjectManager
     public PlayerController Player { get; private set; }
     public HashSet<MonsterController> Monsters { get; } = new HashSet<MonsterController>();
     public HashSet<ProjectileController> Projectiles { get; } = new HashSet<ProjectileController>();
-    public HashSet<SkillController> Skills { get; } = new HashSet<SkillController>();
+    public HashSet<SkillBase> Skills { get; } = new HashSet<SkillBase>();
     public HashSet<GemController> Gems { get; } = new HashSet<GemController>();
 
     public T Spawn<T>(Vector3 position, int templateID = 0) where T : BaseController // 만약 키 값을 숫자가 아니고 이름으로 하고 싶으면 string으로 변경
@@ -88,22 +88,21 @@ public class ObjectManager
 
             return pc as T;
         }
-        else if (typeof(T).IsSubclassOf(typeof(SkillController)))
+        else if (typeof(T).IsSubclassOf(typeof(SkillBase)))
         {
-            if(Managers.Data.SkillDic.TryGetValue(templateID, out Data.SkillData skillData) == false)
+            if (Managers.Data.SkillDic.TryGetValue(templateID, out Data.SkillData skillData) == false)
             {
                 Debug.LogError($"ObjectManager Spawn Skill Failed {templateID}");
                 return null;
             }
 
-            GameObject go = Managers.Resource.Instantiate(skillData.prefab, pooling: true);
+            GameObject go = Managers.Resource.Instantiate(skillData.prefab, pooling: false);
             go.transform.position = position;
 
-            SkillController sc = go.GetOrAddComponent<SkillController>();
-            Skills.Add(sc);
-            sc.Init();
+            T t = go.GetOrAddComponent<T>();
+            t.Init();
 
-            return sc as T;
+            return t;
         }
 
         return null;
@@ -120,7 +119,7 @@ public class ObjectManager
         {
             // Todo
         }
-        else if (type == typeof(MonsterController))
+        else if (type == typeof(MonsterController) || type.IsSubclassOf(typeof(MonsterController)))
         {
             Monsters.Remove(obj as MonsterController);
             Managers.Resource.Destroy(obj.gameObject);
@@ -138,11 +137,11 @@ public class ObjectManager
             Projectiles.Remove(obj as ProjectileController);
             Managers.Resource.Destroy(obj.gameObject);
         }
-        else if (type == typeof(SkillController))
-        {
-            Skills.Remove(obj as SkillController);
-            Managers.Resource.Destroy(obj.gameObject);
-        }
+        //else if (type == typeof(SkillBase))
+        //{
+        //    Skills.Remove(obj as SkillBase);
+        //    Managers.Resource.Destroy(obj.gameObject);
+        //}
     }
 
     public void DespawnAllMonsters()
