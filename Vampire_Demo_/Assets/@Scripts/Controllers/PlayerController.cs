@@ -25,15 +25,15 @@ public class PlayerController : CreatureController
 
     public override bool Init()
     {
-        if(base.Init() == false)
+        Debug.Log("Init method called"); // 로그 추가
+        if (base.Init() == false)
             return false;
 
         Managers.Game.OnMoveDirChanged += HandleOnMoveDirChanged;
 
         //스킬 적용
         Skills.AddSkill<FireballSkill>(transform.position);
-        Skills.AddSkill<EgoSword>(_indicator.position);
-
+        //Skills.AddSkill<EgoSword>(_indicator.position);
 
         return true;
     }

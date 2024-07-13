@@ -13,7 +13,8 @@ public class CreatureController : BaseController
 
     public override bool Init()
     {
-        base.Init();
+        if (base.Init() == false)
+            return false;
 
         Skills = gameObject.GetOrAddComponent<SkillBook>();
 
