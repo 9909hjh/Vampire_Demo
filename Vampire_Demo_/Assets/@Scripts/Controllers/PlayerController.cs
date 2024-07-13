@@ -33,7 +33,7 @@ public class PlayerController : CreatureController
 
         //스킬 적용
         Skills.AddSkill<FireballSkill>(transform.position);
-        //Skills.AddSkill<EgoSword>(_indicator.position);
+        Skills.AddSkill<EgoSword>(_indicator.position);
 
         return true;
     }
