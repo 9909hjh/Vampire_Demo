@@ -73,11 +73,11 @@ public class UI_GameResultPopup : UI_Base
 
         // 정보 취합
         GetText((int)Texts.GameResultPopupTitleText).text = "Game Result";
-        GetText((int)Texts.ResultStageValueText).text = "4 STAGE";
+        GetText((int)Texts.ResultStageValueText).text = "2 STAGE";
         GetText((int)Texts.ResultSurvivalTimeText).text = "Survival Time";
-        GetText((int)Texts.ResultSurvivalTimeValueText).text = "14:23";
-        GetText((int)Texts.ResultGoldValueText).text = "200";
-        GetText((int)Texts.ResultKillValueText).text = "100";
+        GetText((int)Texts.ResultSurvivalTimeValueText).text = "1:23";
+        GetText((int)Texts.ResultGoldValueText).text = "0";
+        GetText((int)Texts.ResultKillValueText).text = "51";
         GetText((int)Texts.ConfirmButtonText).text = "OK";
     }
 

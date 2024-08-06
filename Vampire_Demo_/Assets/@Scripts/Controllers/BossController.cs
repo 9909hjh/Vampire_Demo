@@ -10,7 +10,7 @@ public class BossController : MonsterController
 
         _animator = GetComponent<Animator>();
         
-        Hp = 10000; // 데이터 시트 참고해서 만들기.
+        Hp = 1000; // 데이터 시트 참고해서 만들기.
 
         CreatureState = Define.CreatureState.Skill;
 
@@ -31,6 +31,7 @@ public class BossController : MonsterController
                 _animator.Play("Idle");
                 break;
             case Define.CreatureState.Moving:
+                
                 _animator.Play("Moving");
                 break;
             case Define.CreatureState.Skill:
@@ -106,6 +107,9 @@ public class BossController : MonsterController
         CreatureState = Define.CreatureState.Dead;
         Wait(2.0f); // 죽는 애니메이션 시간 
         // 죽었다면 젬 말고 다른 보물 상자를 드랍 하도록 설정
+        UI_GameResultPopup cp = Managers.UI.ShowPop<UI_GameResultPopup>();
+        cp.SetInfo();
+
         base.OnDead();
     }
 }
