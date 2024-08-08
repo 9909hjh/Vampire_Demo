@@ -57,8 +57,8 @@ public static class Define
         Dead
     }
 
-    public const int GOBLIN_ID = 1;
-    public const int SNAKE_ID = 2;
+    public const int VINE_ID = 1;
+    public const int MUD_ID = 2;
     public const int BOSS_ID = 3;
 
     public const int PLAYER_DATA_ID = 1;

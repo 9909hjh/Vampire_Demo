@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: da09daa81b99fce45ac7192e08e6edd9
   m_SerializeEntries:
   - m_GUID: db46a4e068f5f86428153deb6ef7a076
-    m_Address: Snake_01.prefab
+    m_Address: Mud_01.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
@@ -30,7 +30,7 @@ MonoBehaviour:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: efbb63858c8b7014da450843dd620fe4
-    m_Address: Goblin_01.prefab
+    m_Address: Vine_01.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

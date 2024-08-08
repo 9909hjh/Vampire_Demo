@@ -81,7 +81,7 @@ public class MonsterController : CreatureController
         Vector3 newPos = transform.position + dir.normalized * Time.deltaTime * (_speed / 2);
         GetComponent<Rigidbody2D>().MovePosition(newPos);
 
-        GetComponent<SpriteRenderer>().flipX = dir.x > 0;
+        GetComponent<SpriteRenderer>().flipX = dir.x < 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

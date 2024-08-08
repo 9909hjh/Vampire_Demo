@@ -39,11 +39,11 @@ public class ObjectManager
 
             switch(templateID)
             {
-                case Define.GOBLIN_ID:
-                    name = "Goblin_01";
+                case Define.VINE_ID:
+                    name = "Vine_01";
                     break;
-                case Define.SNAKE_ID:
-                    name = "Snake_01";
+                case Define.MUD_ID:
+                    name = "Mud_01";
                     break;
                 case Define.BOSS_ID:
                     name = "Boss_01";
