@@ -75,7 +75,7 @@ public class UI_GameResultPopup : UI_Base
         GetText((int)Texts.GameResultPopupTitleText).text = "Game Result";
         GetText((int)Texts.ResultStageValueText).text = "2 STAGE";
         GetText((int)Texts.ResultSurvivalTimeText).text = "Survival Time";
-        GetText((int)Texts.ResultSurvivalTimeValueText).text = "1:23";
+        GetText((int)Texts.ResultSurvivalTimeValueText).text = "0:43";
         GetText((int)Texts.ResultGoldValueText).text = "0";
         GetText((int)Texts.ResultKillValueText).text = "51";
         GetText((int)Texts.ConfirmButtonText).text = "OK";
